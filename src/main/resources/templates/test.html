@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/signUp" method="post" enctype="multipart/form-data">
+<input type="text" name="lastname" value="Mouse">
+<br><br>
+dsc1：<input type="radio" checked="checked" name="dsc1" value="0" /><input type="radio" name="dsc1" value="1" />
+<br />
+dsc2：<input type="radio" checked="checked" name="dsc2" value="0" /><input type="radio" name="dsc2" value="1" />
+<br />
+dsc2：<input type="radio" checked="checked" name="dsc3" value="0" /><input type="radio" name="dsc3" value="1" />
+<br />
+<input type="file" name="file"/>
+
+
+<input type="submit" value="signUp" >
+</form> 
+
+<p>如果您点击提交，表单数据会被发送到名为 demo_form.asp 的页面。</p>
+
+</body>
+</html>
