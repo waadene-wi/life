@@ -1,17 +1,15 @@
 package com.wy.life.ctrl;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,34 +33,38 @@ public class UserCtrl {
 	public String index() {
 		return "test";
 	}
-	
-	public String login(String picCode,String phone,String verCode,HttpSession session) {
+	@PostMapping("/login")
+	@ResponseBody
+	public Result login(String picCode,String phone,String verCode,HttpSession session) {
 		
 		try {
 			User user = userService.login(phone, verCode);
 			if(user != null) {
 				session.setAttribute("login", user);
-				return "index";
+				return Result.success();
+			}else {
+				return Result.error("user为空");
 			}
 		} catch (MyException e) {
-			e.printStackTrace();
+			return Result.error(e.getMessage());
 		}
-		return "redirect:/login";
 	}
 	
 	public void logout(HttpSession session) {
 		session.removeAttribute("login");
 	}
 	
-	public void send(String picCode,String phone,HttpSession session) {
+	@PostMapping("/send")
+	@ResponseBody
+	public Result send(@NotNull String picCode,@NotNull String phone,HttpSession session) {
 		try {
 			//check pic
 			checkZym(picCode, session);
 			userService.sendCode(phone);
 		} catch (MyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return Result.error(e.getMessage());
 		}
+		return Result.success();
 	}
 	@RequestMapping("/getZym")
 	public void getZym(HttpServletResponse response,HttpSession session) throws Exception{
@@ -73,7 +75,7 @@ public class UserCtrl {
 	    response.setHeader("Cache-Control", "no-cache");  
 	    response.setDateHeader("Expires", 0);  
 
-	    ValidateCode vCode = new ValidateCode(120,40,5,100);  
+	    ValidateCode vCode = new ValidateCode(120,40,4,100);  
 	    session.setAttribute("code", vCode.getCode());  
 	    vCode.write(response.getOutputStream());  
 	}
@@ -89,7 +91,8 @@ public class UserCtrl {
 	
 	//报名
 	@PostMapping("/signUp")
-	public @ResponseBody Result signUp(Project project,@RequestParam("file") MultipartFile file, BindingResult result,HttpSession session) {
+	@ResponseBody
+	public Result signUp(Project project,@RequestParam("file") MultipartFile file, BindingResult result,HttpSession session) {
 		
 		
 		//check login

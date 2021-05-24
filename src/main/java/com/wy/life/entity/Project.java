@@ -26,4 +26,6 @@ public class Project extends BaseModel{
 	@Column(columnDefinition="mediumblob")
 	private byte[] fileContent;
 	
+	private int state;
+	
 }
