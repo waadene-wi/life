@@ -1,5 +1,6 @@
 package com.wy.life.service;
 
+import java.io.IOException;
 import java.util.Random;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import com.wy.life.exception.MyException;
 import com.wy.life.rpstory.PhoneCodeRepository;
 import com.wy.life.rpstory.ProjectRepository;
 import com.wy.life.rpstory.UserRepository;
+import com.wy.life.utils.Xioo;
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 		PhoneCode phoneCode = phoneCodeRepository.findByPhoneAndVerifyCode(phone, verCode);
 		if (phoneCode == null) {
-			MyException.byMsg("验证码错误");
+			throw MyException.byMsg("验证码错误");
 		}
 		//第一次创建用户
 		User user = userRepository.findByPhone(phone);
@@ -43,15 +45,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void sendCode(String phone) {
+	public void sendCode(String phone) throws MyException{
 
 		PhoneCode phoneCode = new PhoneCode();
 		phoneCode.setPhone(phone);
-		phoneCode.setVerifyCode(getCode(phone));
+		String code = getCode(phone);
+		phoneCode.setVerifyCode(code);
 		
 		//调用第三方短信接口
+		try {
+			String result = Xioo.send(phone, code);
+			String resultCode = result.substring(0,result.indexOf(","));
+			if(!resultCode.equals("0")) {
+				throw MyException.byMsg("发送验证码失败");
+			}
+		} catch (IOException e) {
+			throw MyException.byMsg("发送验证码失败");
+		}
 		phoneCodeRepository.save(phoneCode);
-
 	}
 	
 	private String getCode(String phone) {
@@ -69,14 +80,13 @@ public class UserServiceImpl implements UserService {
 	 * 
 	 */
 	public String randomInt() {
-		Random r = new Random();
-		String charValue = "";
-		for (int i = 0; i < 6; i++) {
-			char c = (char) (r.nextInt(0 - 9) + '0');
-			charValue += String.valueOf(c);
-		}	
-		return charValue;
-		
+		Random random = new Random();
+		String result="";
+		for (int i=0;i<6;i++)
+		{
+			result+=random.nextInt(10);
+		}
+		return result;
 	}
 
 	@Override
@@ -84,7 +94,7 @@ public class UserServiceImpl implements UserService {
 		
 		boolean exist = projectRepository.existsByUserId(user.getId());
 		if(exist) {
-			MyException.byMsg("已报名项目");
+			throw MyException.byMsg("已报名项目");
 		}
 		project.setUserId(user.getId());
 		

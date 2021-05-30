@@ -23,4 +23,5 @@ public class Result {
 		this.msg = msg;
 	}
 	
+	
 }
