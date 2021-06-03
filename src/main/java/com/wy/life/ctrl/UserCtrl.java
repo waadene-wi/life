@@ -32,7 +32,7 @@ public class UserCtrl {
 
 	@RequestMapping("/")
 	public String index() {
-		return "test";
+		return "te st";
 	}
 
 	@PostMapping("/login")
