@@ -30,12 +30,12 @@ public class UserCtrl {
 	@Resource
 	private UserService userService;
 
-	@RequestMapping("/")
+	@RequestMapping("/login")
 	public String index() {
-		return "te st";
+		return "login";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/doLogin")
 	@ResponseBody
 	public Result login(@RequestBody Map<String, Object> reqMap,HttpSession session) {
 		String phone = reqMap.get("phone").toString();

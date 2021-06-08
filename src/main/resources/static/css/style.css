@@ -1,0 +1,199 @@
+body, h1, h2, h3, h4, h5, h6, dl, dt, li, dd, th, td, p, pre, form, input, button, textarea, hr {margin: 0;padding: 0;}
+button, input, select, textarea {font-size: 100%;}
+html, body { font:14px/22px "Microsoft Yahei",Helvetica,Arial,sans-serif;color: #333;background: #fff;-webkit-text-size-adjust: none;}
+div,form,ul,ol,li,span,p,img { border:0; padding:0; margin:0 auto;}
+a img{ border:none; padding:0; margin:0 auto;}
+a{text-decoration:none;}
+ul,ol,li { list-style-type:none; margin:0; padding:0;}
+h1,h2,h3,h4,h5,h6{ margin: 0px auto}
+.clr{ clear:both;}
+/** head **/
+.head{}
+.head .logo{ background:url(../image/logo1.png) no-repeat center center; background-size: contain; float:left; }
+.m-console {
+    position: absolute;
+    top: 20px;
+    right: 5%;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 999;
+	background: url(../image/mod-qq-console.png) no-repeat;
+}
+#m-woo-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 111px;
+    z-index: 99;
+    background: url(../image/mo.png) repeat;
+}
+.u-woo-white {
+    background: #fff;
+    color: #333;
+}
+.menu3 {
+    position: relative;
+    top: 15%;
+}
+.menu3 li a {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+/** head **/
+
+/** login **/
+.loginCon{ margin:0 auto; padding:0;}
+.loginlogo{ background:url(../image/logo.png) no-repeat center center; width:260px; height:93px; background-size:contain; margin:30px auto 40px;}
+.login_form{}
+.login_form input{
+	width: 97%;
+    height: 32px; 
+	line-height:32px;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: #fff;
+    padding:2px 0;
+    border: none;
+    outline: none;
+    border: 1px solid #c9c9c9;
+    border-radius: 3px;
+    padding-left: 3%;
+    font-size:14px;
+    color: #000;}
+.login_form_item{
+	width: 100%;
+    height:32px;
+    margin-bottom: 20px;}
+.login_form_img input,.login_form_code input{ width:50%;}
+.login_form_img .img_code{ float:right; width:110px; height:34px; margin-top:5px;}
+.login_form_code .login_yzm{ float:right;}
+.login_form_item .code_btn {
+    background-color: #00D8C9;
+    cursor: pointer;
+	display:none;
+}
+.login_form_item .code_btn_dis {
+    background-color: #ccc;
+    cursor: not-allowed;
+	display:block;
+}
+.login_form_item .code_btn,.login_form_item .code_btn_dis {
+    width: 110px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    text-align: center;
+    border-radius: 17px;
+	margin-top:5px;
+}
+.login_form_item .msg {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #DC7164;
+}
+.login_btn a{
+	display: block;
+	clear:both;
+    width: 270px;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    background-color: #188edd;
+    text-align: center;
+    border-radius: 18px;
+    cursor: pointer;
+	margin:0 auto;}
+.login_btn a:hover{ background-color:#0487de;}
+/** login **/
+
+/** baoming **/
+.baomingCon{ margin:0 auto; padding:0; overflow:hidden;}
+.bmbanner{ background:url(../image/banner.jpg) no-repeat center center; height:250px; overflow: hidden; background-size:contain; clear:both;}
+.bminfo{}
+.bminfo h1{ font-size:20px; font-weight:normal; margin: 20px auto 5px; text-align:center; border-bottom:1px solid #000; padding-bottom:20px;}
+.bminfo ul{}
+.bminfo ul li{ margin:15px 0; overflow:hidden; clear:both;}
+.bminfo ul li h3{ font-weight:normal; font-size:14px; margin-bottom:10px;}
+.bminfo ul li span{ margin-left:22px;}
+.bminfo ul li span input{ margin-right:20px;}
+li.login_form_item{ height:auto;}
+li.login_form input{ width:96%;}
+.bminfo p{ color:#ff0000; margin-bottom:20px;}
+.bminfo .inputfile{ border:1px solid #c9c9c9;}
+.bminfo .shangchuan{ height:27px; width:50px; background-color:#333; border:0; border:none; color:#fff; display:none;}
+.bminfo .shangchuan:hover{ background-color:#0487de;}
+.bminfo em{ color:#ff0000; font-style:normal; margin-top:10px;}
+/** baoming **/
+
+/** newslist **/
+.newsList {
+    margin: 0 auto;
+}
+.newsList li {
+    background: url(../image/arr.jpg) left center no-repeat;
+    padding: 1.5% 0;
+    height: 30px;
+    overflow: hidden;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 14px;
+	line-height:30px;
+}
+.newsList li span {
+    float: right;
+}
+.newsList li a {
+    padding-left: 2%;
+	color:#333;
+}
+.page {
+    padding: 30px 0;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.page span {
+    margin-right: 4px;
+}
+.page a {
+    margin: 0 2px;
+    padding: 2px 6px;
+    background: #eee;
+    border-radius: 2px;
+    color: #434343;
+}
+.page a:hover, .page a.current {
+    color: #fff;
+    background: #153758;
+}
+/** newslist **/
+
+/** news **/
+.article .mt h1 {
+    padding: 5px 0 0;
+    font-size: 18px;
+    color: #000;
+    line-height: 26px;
+    font-weight: 100;
+}
+.article .mt .titBar {
+    padding: 4px 0;
+    border-bottom: 1px dashed #ccc;
+    color: #777;
+    line-height: 24px;
+}
+.newsinfo{ margin:5px auto; line-height:25px;}
+.fenye{ margin:15px auto;}
+.fenye a{ color:#333;}
+/** news **/
+
+/** foot **/
+.footinfo{ background-color:#f9f9f9; padding:20px 0; overflow:hidden; clear:both;}
+.footinfo p{ margin:10px auto; padding:0; text-align:center; line-height:20px;}
+/** foot **/

@@ -1,0 +1,225 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>报名-2018建行创客行</title>
+<link href="css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="css/h5.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="js/respond.min.js"></script>
+<script src="js/jquery-1.9.1.min.js" type=text/javascript></script>
+</head>
+<body>
+<!-- top -->
+<div class="top">
+<div class="head">
+  <div class="logo"></div>
+  <div class="dsmail">大赛官方邮箱：<br>xxxxxx@ccbszckx.com</div>
+  <p id="j-console" class="m-console m-console-active"></p>
+  <div id="m-woo-panel" class="u-woo-white" style="height: 657px; right: -111px;">
+	<div class="menu3">
+		<ul>
+			<li><a href="index.html">网站首页</a></li>
+			<li><a href="baoming.html">在线报名</a></li>
+			<li><a href="toupiaolist.html">在线投票</a></li>
+			<li><a href="pingfenlist.html">评委打分</a></li>
+            <li><a href="newslist.html">最新动态</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+            <li><a href="login.html">登录</a></li>
+		</ul>
+	</div>
+</div>
+<script>
+	$(function(){
+
+		var m_woo_panel = $('#m-woo-panel');
+		var j_close = $('#j-close')
+		var j_console = $('#j-console')
+
+		//初始是否收起 等于 1 默认收起
+		var ini = 1;
+		if(ini == 1){
+			j_console.addClass("m-console-active");
+			m_woo_panel.css({right:-111});
+		}else{
+			j_console.removeClass("m-console-active");
+			m_woo_panel.css({right:0});
+		};
+
+		j_close.on('click',function(){
+			m_woo_panel.hide();
+		});
+		j_console.on("click",function(){
+			if($(this).hasClass("m-console-active")){
+				$(this).removeClass("m-console-active");
+				m_woo_panel.animate({right:0});
+			}else{
+				$(this).addClass("m-console-active");
+				m_woo_panel.animate({right:-111});
+			};
+		});
+	});
+
+	var h = $(window).height();
+	$('#m-woo-panel').css('height',h);
+</script>
+</div>
+<div class="clr"></div>
+
+<!-- nav -->
+<div class="navdh">
+  <ul>
+      <li><a href="index.html" class="active">网站首页</a></li>
+      <li><a href="baoming.html">在线报名</a></li>
+      <li><a href="toupiaolist.html">在线投票</a></li>
+      <li><a href="pingfenlist.html">评委打分</a></li>
+      <li><a href="newslist.html">最新动态</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+      <li><a href="login.html">登录</a></li>
+  </ul>
+</div>
+
+<div class="clr"></div>
+<!-- banner -->
+<script type="text/javascript" src="js/superslide.2.1.js"></script>
+
+<div class="fullSlide">
+	<div class="bd">
+		<ul>
+			<li _src="url(image/banner11.jpg)" style="background:#E2025E center 0 no-repeat;">
+            <a href="javascript:void(0)"></a></li>
+			<li _src="url(image/banner12.jpg)" style="background:#DED5A1 center 0 no-repeat;"><a href="http://www.sucaihuo.com"></a></li>
+		</ul>
+	</div>
+	<div class="hd"><ul></ul></div>
+	<span class="prev"></span>
+	<span class="next"></span>
+</div><!--fullSlide end-->
+  
+  
+<script type="text/javascript">
+$(".fullSlide").hover(function(){
+    $(this).find(".prev,.next").stop(true, true).fadeTo("show", 0.5)
+},
+function(){
+    $(this).find(".prev,.next").fadeOut()
+});
+$(".fullSlide").slide({
+    titCell: ".hd ul",
+    mainCell: ".bd ul",
+    effect: "fold",
+    autoPlay: true,
+    autoPage: true,
+    trigger: "click",
+    startFun: function(i) {
+        var curLi = jQuery(".fullSlide .bd li").eq(i);
+        if ( !! curLi.attr("_src")) {
+            curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
+        }
+    }
+});
+</script>
+</div>
+<!-- top -->
+
+<div class="bminfo"><h1>请您如实填写以下报名信息</h1></div>
+<div class="gridContainer clearfix">
+  <div id="LayoutDiv1">
+    <div class="baomingCon">
+      <div class="bminfo">
+        <ul>
+          <li>
+            <h3>1、经过种子轮或天使以上投资轮次的项目</h3>
+            <span>是&nbsp;<input name="jayce" type="checkbox" value="否" checked>否&nbsp;<input name="jayce" type="checkbox" value="否"></span>
+          </li>
+           <li>
+            <h3>2、高校研究成果及专利发明</h3>
+            <span>是&nbsp;<input name="jayce" type="checkbox" value="否" checked>否&nbsp;<input name="jayce" type="checkbox" value="否"></span>
+          </li>
+           <li>
+            <h3>3、大赛合作单位、导师推荐</h3>
+            <span>是&nbsp;<input name="jayce" type="checkbox" value="否" checked>否&nbsp;<input name="jayce" type="checkbox" value="否"></span>
+          </li>
+           <li>
+            <h3>4、建行各支行推荐项目</h3>
+            <span>是&nbsp;<input name="jayce" type="checkbox" value="否" checked>否&nbsp;<input name="jayce" type="checkbox" value="否"></span>
+          </li>
+           <li>
+            <h3>5、项目领域是否为金融科技项目</h3>
+            <span>是&nbsp;<input name="jayce" type="checkbox" value="否" checked>否&nbsp;<input name="jayce" type="checkbox" value="否"></span>
+          </li>
+          <li class="login_form login_form_item">
+            <input type="text" name="username" placeholder="请输入您的姓名">
+          </li>
+          <li class="login_form login_form_item">
+            <input type="text" name="username" placeholder="请输入您的公司名称">
+          </li>
+          <li class="login_form login_form_item">
+            <input type="text" name="username" placeholder="请输入您的职位">
+          </li>
+          <li class="login_form login_form_item">
+            <input type="text" name="username" placeholder="请输入您的联系方式">
+          </li>
+          <li class="login_form login_form_item">
+            <input type="text" name="username" placeholder="请输入您的邮箱">
+          </li>
+          <li class="filesubmit1">
+            <input type="file" class="inputfile" name="filedata">
+            <input type="submit" class="shangchuan" name="submit" value="上传"><br />
+            <em>注：请上传文件格式为PPT或PDF两种格式的文件且文件大小不超过10M。</em><!-- 仅在PC端展示，移动端隐藏 -->
+          </li>
+        </ul>
+          <p class="filesubmit2">注:请您登陆电脑端上传您的项目文件,文件格式为PPT或PDF两种格式且大小不超过10M。</p><!-- 仅在移动端展示 -->
+        <div class="login_form_item">
+         <span class="login_btn"><a href="javascript: submit();">提交</a></span>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- foot -->
+<div class="footmain">
+  <div class="footnav">
+      <a href="index.html">网站首页</a>|
+      <a href="baoming.html">在线报名</a>|
+      <a href="toupiaolist.html">在线投票</a>|
+      <a href="pingfenlist.html">评委打分</a>|
+      <a href="newslist.html">最新动态</a>|
+      <a href="contact.html">联系我们</a>|
+      <a href="login.html">登录</a>
+  </div>
+  <div class="clr"></div>
+  <p>主办单位：建设银行深圳市分行&nbsp;&nbsp;&nbsp;承办单位：深圳市珊瑚群创新服务有限公司</p>
+  <p></p>
+  <p>客服热线：0755-88888888&nbsp;&nbsp;&nbsp;邮箱：jasonzhang@coralgroup.cn</p>
+  <p>联系地址：中国广东省深圳市南山区海天二路</p>
+  <p></p>
+  <p>©2018 建行创客行 版权所有</p>
+</div>
+<!-- foot -->
+
+<div class="footinfo">
+  <p>2018建行金融科技创客行</p>
+  <p>活动承办方：深圳市珊瑚群创新服务有限公司</p>
+</div>
+</body>
+</html>
