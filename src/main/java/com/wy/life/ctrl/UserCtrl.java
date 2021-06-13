@@ -39,9 +39,9 @@ public class UserCtrl {
 	@ResponseBody
 	public Result login(@RequestBody Map<String, Object> reqMap,HttpSession session) {
 		String phone = reqMap.get("phone").toString();
-		String verCode = reqMap.get("verCode").toString();
+		String code = reqMap.get("code").toString();
 		try {
-			User user = userService.login(phone, verCode);
+			User user = userService.login(phone, code);
 			if (user != null) {
 				session.setAttribute("login", user);
 				return Result.success();
@@ -60,11 +60,16 @@ public class UserCtrl {
 	@PostMapping("/send")
 	@ResponseBody
 	public Result send(@RequestBody Map<String, Object> reqMap, HttpSession session) {
-		String picCode = reqMap.get("picCode").toString();
+		
+		if(reqMap == null || reqMap.get("imgcode") == null || reqMap.get("phone") == null) {
+			return Result.error("参数有误");
+		}
+		
+		String imgcode = reqMap.get("imgcode").toString();
 		String phone = reqMap.get("phone").toString();
 		try {
 			// check pic
-			checkZym(picCode, session);
+			checkZym(imgcode, session);
 			userService.sendCode(phone);
 		} catch (MyException e) {
 			return Result.error(e.getMessage());
@@ -98,9 +103,16 @@ public class UserCtrl {
 		}
 		return true;
 	}
-
+	
+	
+	@RequestMapping("/signUp")
+	public String signUp() {
+		return "baoming";
+	}
+	
+	
 	// 报名
-	@PostMapping("/signUp")
+	@PostMapping("/doSignUp")
 	@ResponseBody
 	public Result signUp(Project project, @RequestParam("file") MultipartFile file, BindingResult result,
 			HttpSession session) {

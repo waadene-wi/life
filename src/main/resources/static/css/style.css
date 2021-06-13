@@ -77,10 +77,17 @@ h1,h2,h3,h4,h5,h6{ margin: 0px auto}
 	display:none;
 }
 .login_form_item .code_btn_dis {
+    background-color: #00D8C9;
+    cursor: pointer;
+	display:block;
+}
+
+/* .login_form_item .code_btn_dis {
     background-color: #ccc;
     cursor: not-allowed;
 	display:block;
-}
+} */
+
 .login_form_item .code_btn,.login_form_item .code_btn_dis {
     width: 110px;
     height: 32px;

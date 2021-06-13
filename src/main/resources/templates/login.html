@@ -72,29 +72,133 @@ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 				m_woo_panel.animate({right:-111});
 			};
 		});
+		
+
+		$("#getCode").click(function(){	
+			
+			if($("#phone").val().length == 0){
+				alert("请输入手机号");
+				return;
+			}
+			
+			if (!/^((13[0-9]|15[0-9]|17[0-9]|18[0-9]|16[0-9])+\d{8})$/.test($("#phone").val())) {
+				alert("请输入正确的手机号")
+				return;
+			}
+			
+			if($("#imgcode").val().length == 0){
+				alert("请输入图形验证码");
+				return;
+			}
+			
+			var data = {"phone":$("#phone").val(),"imgcode":$("#imgcode").val()};
+			$.ajax({
+				url:"send",
+				data:JSON.stringify(data),
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				type:"post",
+				async:false,
+				dataType:"json",
+				success : function(data) {
+					if(data.code=="000"){
+						alert("验证码发送成功，收到后请输入验证码");
+						time(this);
+					} else {
+						alert(data.msg);
+					}
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		});
 	});
 
 	var h = $(window).height();
 	$('#m-woo-panel').css('height',h);
+	
+	
+
+	
+	//验证码倒计时
+	var wait = 60;
+	function time(obj) {
+		if(wait==0) {
+			$("#getCode").removeAttr("disabled");
+			$("#getCode").html("获取验证码");
+			wait = 60;
+		}else {
+			$("#getCode").attr("disabled","true");
+			$("#getCode").html(wait+"秒后重试");
+			wait--;
+			setTimeout(function() {		//倒计时方法
+				time(obj);
+			},1000);	//间隔为1s
+		}
+	}
+	
+	//登录
+	function login(){
+		if($("#phone").val().length == 0){
+			alert("请输入手机号");
+			return;
+		}
+		
+		if (!/^((13[0-9]|15[0-9]|17[0-9]|18[0-9]|16[0-9])+\d{8})$/.test($("#phone").val())) {
+			alert("请输入正确的手机号")
+			return;
+		}
+		
+		if($("#code").val().length == 0){
+			alert("请输入手机验证码");
+			return;
+		}
+		
+		var data = {"phone":$("#phone").val(),"code":$("#code").val()};
+		$.ajax({
+			url:"doLogin",
+			data:JSON.stringify(data),
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			type:"post",
+			async:false,
+			dataType:"json",
+			success : function(data) {
+				if(data.code=="000"){
+					alert("登录成功");
+					window.location.href="signUp";
+				} else {
+					alert(data.msg);
+				}
+			},
+			error : function() {
+				alert("error");
+			}
+		});		
+	}
+
+	
+	
 </script>
 </div>
 <div class="gridContainer clearfix">
   <div id="LayoutDiv1">
     <div class="loginCon">
       <div class="loginlogo"></div>
-      <form class="login_form" action="doLogin">
+      <form class="login_form">
       <div class="login_form_item">
-         <input type="text" name="phone" placeholder="请输入手机号码">
+         <input type="text" id="phone" placeholder="请输入手机号码">
       </div>
       <div class="login_form_item login_form_img">
-         <input type="text" name="imgcode" placeholder="请输入图文验证码">
+         <input type="text" id="imgcode" placeholder="请输入图文验证码">
          <img class="img_code" src="getZym">
       </div>
       <div class="login_form_item login_form_code">
-         <input type="text" name="code" placeholder="请输入手机验证码">
+         <input type="text" id="code" placeholder="请输入手机验证码">
          <div class="login_yzm">
             <span class="code_btn">获取验证码</span>
-            <span class="code_btn_dis">获取验证码</span>
+            <span id="getCode" class="code_btn_dis">获取验证码</span>
          </div>
       </div>
       <div class="login_form_item"><p class="msg">验证码有误，请重新输入。</p></div>

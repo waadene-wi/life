@@ -1,6 +1,8 @@
 package com.wy.life.service;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import javax.annotation.Resource;
@@ -46,6 +48,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void sendCode(String phone) throws MyException{
+		
+		
+		PhoneCode lastCode =  phoneCodeRepository.findTopByPhoneOrderByCreateDateDesc(phone);
+		Calendar nowTime = Calendar.getInstance();
+		nowTime.setTime(lastCode.getCreateDate());
+		nowTime.add(Calendar.MINUTE, 1);
+		if(lastCode != null && nowTime.getTime().after(new Date())) {
+			throw MyException.byMsg("多次发送验证码间隔为一分钟");
+		}
 
 		PhoneCode phoneCode = new PhoneCode();
 		phoneCode.setPhone(phone);
